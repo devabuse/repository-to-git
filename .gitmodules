@@ -1,0 +1,3 @@
+[submodule "lib/fast-export"]
+	path = lib/fast-export
+	url = https://github.com/mariusvw/fast-export
