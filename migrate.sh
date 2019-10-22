@@ -23,6 +23,10 @@ devtools_root() {
 root="$(devtools_root \"$@\")"
 cd "$root"
 
+# Ensure submodules are checkedout
+git submodule init
+git submodule update
+
 # Check arguments
 if [ "$1" = "" ]
 then
