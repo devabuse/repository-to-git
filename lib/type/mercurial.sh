@@ -36,8 +36,8 @@ fi
 fn_ifs_restore
 
 echo "[-] Naming draft branches..."
-hg log -r "draft()" -b default > $tmpdir/draft-changesets.tmp
-grep 'changeset:' "$tmpdir/draft-changesets.tmp" | awk -F ':' '{ print($2) }' | tr -d ' ' > $tmpdir/draft-revs.tmp
+hg log -T "{rev}\n" -r "draft() & head() & not tag(tip)" -b default > $tmpdir/draft-revs.tmp
+
 fn_ifs_change
 for rev in $(cat $tmpdir/draft-revs.tmp)
 do
