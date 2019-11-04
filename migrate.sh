@@ -21,6 +21,7 @@ devtools_root() {
     [[ $0 != $BASH_SOURCE ]] && devtools_parse_root "${BASH_SOURCE[0]}" || devtools_parse_root "$0"
 }
 root="$(devtools_root \"$@\")"
+cwd=$(pwd)
 cd "$root"
 
 # Ensure submodules are checkedout
@@ -66,8 +67,9 @@ then
 fi
 
 rm -rf "$tmpdir"
+mkdir "$tmpdir"
 
 . "$root/lib/common.sh"
-. "$root/lib/type/$1.sh"
+. "$root/lib/migration/$1.sh"
 
 rm -rf "$tmpdir"
